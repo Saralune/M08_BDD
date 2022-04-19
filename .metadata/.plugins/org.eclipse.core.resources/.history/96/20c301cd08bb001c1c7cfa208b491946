@@ -1,0 +1,8 @@
+import java.sql.Connection;
+
+public interface Dao<T> {
+	public void createPrepared(Article obj, Connection connection);
+	public void updatePrepared(Article obj, Connection connection);
+	public void deletePrepared(int idArticle, Connection connection);
+	public void infosPrepared(Article obj, Connection connection);
+}

@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\Stagiaires10P\Desktop\JSA\BDD\Exos\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+283318020.index
+908409120.index
+1236997273.index
+2798961972.index
+650896469.index
+2599234504.index

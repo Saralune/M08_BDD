@@ -1,0 +1,12 @@
+package fr.fms.dao;
+import java.sql.Connection;
+
+import fr.fms.entities.Article;
+
+public interface Dao<T> {
+	//public Connection connection = ;
+	
+	public void createPrepared(Article obj, Connection connection);
+	public void updatePrepared(Article obj, Connection connection);
+	public void deletePrepared(int idArticle, Connection connection);
+}

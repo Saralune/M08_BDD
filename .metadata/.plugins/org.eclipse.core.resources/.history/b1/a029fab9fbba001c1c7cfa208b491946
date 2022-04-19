@@ -1,0 +1,6 @@
+
+public interface Dao<T> {
+	public void createPrepared(Article obj);
+	public void updatePrepared(Article obj);
+	public void deletePrepared(int IdArticle);
+}

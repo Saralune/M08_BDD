@@ -1,0 +1,5 @@
+SHOW tables;
+
+describe t_articles;
+
+INSERT INTO T_Articles (Description, Brand, UnitaryPrice) VALUES ('Souris', 'Logitoch', 65); 

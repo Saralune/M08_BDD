@@ -1,0 +1,94 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class TestJdbc {
+
+	public static void main(String[] args) {
+		ArrayList<Article> articles = new ArrayList<Article>(); 
+		Article article = new Article();
+		
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		String url = "jdbc:mariadb://localhost:3306/shop";
+		String login = "root";
+		String password = "fms2022";
+		
+		
+		//Ex 3 - ajout d'un article//
+		/*Article artCreated = new Article("Caméra", "Marque", 200, 1);
+		
+		try (Connection connection = DriverManager.getConnection(url, login, password)) {
+			ArticlesDao articlesDao = new ArticlesDao();
+			articlesDao.createPrepared(artCreated, connection);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}*/
+		
+		
+		//Ex 3 - mise à jour de la table//
+		/*Article artUpdated = new Article(18, 125.5);
+		try (Connection connection = DriverManager.getConnection(url, login, password)) {
+			ArticlesDao articlesDao = new ArticlesDao();
+			articlesDao.updatePrepared(artUpdated, connection);
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}*/
+		
+		//Ex 3 - suppression d'un article//
+		/*try (Connection connection = DriverManager.getConnection(url, login, password)) {
+			ArticlesDao articlesDao = new ArticlesDao();
+			articlesDao.deletePrepared(17, connection);
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}*/
+		
+		//Ex 3 - infos d'un article//
+		//Article artInfos = new Article(11);
+		try (Connection connection = DriverManager.getConnection(url, login, password)) {
+			ArticlesDao articlesDao = new ArticlesDao();
+			articlesDao.infosPrepared(11, connection);
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("\n-----\n");
+		
+		//Ex 2//
+		try (Connection connection = DriverManager.getConnection(url, login, password)) {
+			String strSql = "SELECT * FROM t_articles;";
+			try(Statement statement = connection.createStatement()){
+				try (ResultSet resultSet = statement.executeQuery(strSql)){
+					while(resultSet.next()) {
+						int rsIdArticle = resultSet.getInt(1);
+						String rsDescription = resultSet.getString(2);
+						String rsBrand = resultSet.getString(3);
+						double rsPrice = resultSet.getDouble(4);
+						
+						article.setIdArticle(rsIdArticle);
+						article.setDescription(rsDescription);
+						article.setBrand(rsBrand);
+						article.setPrice(rsPrice);
+					}
+				}
+			}
+			for(Article a : articles) {
+				System.out.println(a.getIdArticle() + " - " + a.getDescription() + " - " + a.getBrand() + " - " + a.getPrice());
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

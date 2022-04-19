@@ -1,0 +1,60 @@
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class ArticlesDao implements Dao<Article> {
+
+	@Override
+	public void createPrepared(Article obj) {
+		String str = "INSERT INTO T_Articles (Description, Brand, UnitaryPrice, IdCat) VALUES ('Tapis de souris', 'Logitech', 5, 1);";
+		
+		try(PreparedStatement ps = connection.prepareStatement(str)){
+			ps.setString(1, obj.getDescription());
+			ps.setString(2, obj.getBrand());
+			ps.setDouble(3, obj.getPrice());
+			
+			if(ps.executeUpdate() == 1) {
+				System.out.println("Insertion ok.");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		try (Connection connection = DriverManager.getConnection(url, login, password)) {
+			String strSql = "INSERT INTO T_Articles (Description, Brand, UnitaryPrice, IdCat) VALUES ('Tapis de souris', 'Logitech', 5, 1);";
+			
+			try(Statement statement = connection.createStatement()){
+				try (ResultSet resultSet = statement.executeQuery(strSql)){
+					while(resultSet.next()) {
+						int rsIdArticle = resultSet.getInt(1);
+						String rsDescription = resultSet.getString(2);
+						String rsBrand = resultSet.getString(3);
+						double rsPrice = resultSet.getDouble(4);
+						int rsIdCat = resultSet.getInt(5);
+						articles.add(new Article(rsIdArticle, rsDescription, rsBrand, rsPrice, rsIdCat));
+					}
+				}
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	@Override
+	public void updatePrepared(Article obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deletePrepared(int IdArticle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

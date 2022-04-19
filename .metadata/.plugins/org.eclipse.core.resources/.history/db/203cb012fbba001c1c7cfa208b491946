@@ -1,0 +1,22 @@
+
+public class ArticlesDao implements Dao<Article> {
+
+	@Override
+	public void createPrepared(Article obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updatePrepared(Article obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deletePrepared(int IdArticle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
