@@ -98,16 +98,20 @@ public class ArticlesDao<T> implements Dao<Article> {
 		ArrayList<Article> res = new ArrayList<Article>();
 		String strSql = "SELECT * from t_articles;";
 
+		//lance la requête
 		try(PreparedStatement ps = connection.prepareStatement(strSql)){
 			try (ResultSet resultSet = ps.executeQuery()){
+				
 				//affiche tous les résultats
 				while(resultSet.next()) {
 					
+					//récupère les infos du résultat
 					int rsIdArticle = resultSet.getInt(1);
 					String rsDescription = resultSet.getString(2);
 					String rsBrand = resultSet.getString(3);
 					double rsPrice = resultSet.getDouble(4);
 					
+					//Créé un nouvel article à ajouter à l'ArrayList
 					res.add(new Article(rsIdArticle, rsDescription, rsBrand, rsPrice));
 				}
 			}

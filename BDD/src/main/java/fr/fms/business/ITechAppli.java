@@ -1,9 +1,11 @@
 /**
  * 
  */
-package fr.fms.entities;
+package fr.fms.business;
 
 import java.util.ArrayList;
+
+import fr.fms.entities.Article;
 
 /**
  * @author Stagiaires10P

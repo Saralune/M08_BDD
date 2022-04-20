@@ -1,3 +1,4 @@
+package fr.fms;
 import fr.fms.dao.UserDao;
 
 import java.util.Scanner;

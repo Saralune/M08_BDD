@@ -2,8 +2,6 @@ package fr.fms.dao;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import fr.fms.entities.Article;
-
 public interface Dao<T> {
 	public Connection connection = DbConnection.getConnection();
 	
