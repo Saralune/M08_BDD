@@ -14,21 +14,25 @@ public class DbConnection {
 	 * @return the connection
 	 */
 	public static Connection getConnection() {
+		//static {
 		try {
-			prop = CreateConfigFile.readPropertiesFile("config.properties");
-			Class.forName(prop.getProperty("db.driver.class"));
-			
-			String url = prop.getProperty("db.url");
-			String login = prop.getProperty("db.login");
-			String password = prop.getProperty("db.password");
-			
-			connection = DriverManager.getConnection(url, login, password);
+			if(connection == null) {
+				prop = CreateConfigFile.readPropertiesFile("config.properties");
+				Class.forName(prop.getProperty("db.driver.class"));
+				
+				String url = prop.getProperty("db.url");
+				String login = prop.getProperty("db.login");
+				String password = prop.getProperty("db.password");
+				
+				connection = DriverManager.getConnection(url, login, password);
+			} 
 			
 		} catch (SQLException | IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 		return connection;
+		//}
 	}
 
 	/**

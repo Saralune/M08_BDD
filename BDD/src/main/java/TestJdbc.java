@@ -1,83 +1,74 @@
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Properties;
+import fr.fms.dao.UserDao;
+
+import java.util.Scanner;
 
 import fr.fms.dao.ArticlesDao;
-import fr.fms.dao.CreateConfigFile;
 import fr.fms.entities.Article;
+import fr.fms.entities.User;
 
 public class TestJdbc {
 
 	public static void main(String[] args) {
-		ArrayList<Article> articles = new ArrayList<Article>(); 
+		Scanner scan = new Scanner(System.in);
+		boolean loop = true;
 		
-//		try {
+		while(loop) {
+			System.out.println("Veuillez saisir un login : ");
+			String log = scan.next();
+			
+			System.out.println("Veuillez saisir un mot de passe : ");
+			String pwd = scan.next();
+			
+			User user = new User(log, pwd);
+			
+			if(user.userExists()) { 	//new UserDao<User>().isUser(user)
+				System.out.println(new ArticlesDao<Article>().readAll());
+				loop = false;
+				scan.close();
+			} else {
+				System.out.println("Le compte n'existe pas.\n");
+			}
+			 
+		}
+		
+		
+		
+		
+		//Ex 8 - Users//
+		//new UserDao<User>().create(new User("Jean", "123"));
+		//new UserDao<User>().update(new User(3, "Jeanne", "123"));
+		//new UserDao<User>().delete(3);
+		//System.out.println(new UserDao<User>().read(2));
+		//System.out.println(new UserDao<User>().readAll());
+	
+		//Ex 3 - Articles//				
+		//System.out.println(new ArticlesDao<Article>().read(12));
+		
+//		System.out.println("\n-----\n");
+//		System.out.println(new ArticlesDao<Article>().readAll());
+//		new ArticlesDao<Article>().delete(51);
+		
+		//Ex 2//
+		//ArrayList<Article> articles = new ArrayList<Article>(); 
 
-			//Ex 3 - ajout d'un article//
-			/*Article artCreated = new Article("Caméra", "Marque", 200, 1);
-			
-			try (Connection connection = DriverManager.getConnection(url, login, password)) {
-				ArticlesDao articlesDao = new ArticlesDao();
-				articlesDao.createPrepared(artCreated, connection);
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}*/
-			
-			
-			//Ex 3 - mise à jour de la table//
-			/*Article artUpdated = new Article(18, 125.5);
-			try (Connection connection = DriverManager.getConnection(url, login, password)) {
-				ArticlesDao articlesDao = new ArticlesDao();
-				articlesDao.updatePrepared(artUpdated, connection);
-				
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}*/
-			
-			//Ex 3 - suppression d'un article//
-			/*try (Connection connection = DriverManager.getConnection(url, login, password)) {
-				ArticlesDao articlesDao = new ArticlesDao();
-				articlesDao.deletePrepared(17, connection);
-				
-			} catch(SQLException e) {
-				e.printStackTrace();
-			}*/
-			
-			//Ex 3 - infos d'un article//				
-			new ArticlesDao<Article>().read(11);
-			
-			System.out.println("\n-----\n");
-			
-			//Ex 2//
-//			try (Connection connection = DriverManager.getConnection(url, login, password)) {
-//				String strSql = "SELECT * FROM t_articles";
-//				try(Statement statement = connection.createStatement()){
+//		try (Connection connection = DriverManager.getConnection(url, login, password)) {
+//			String strSql = "SELECT * FROM t_articles";
+//			try(Statement statement = connection.createStatement()){
 //					try (ResultSet resultSet = statement.executeQuery(strSql)){
-//						while(resultSet.next()) {
-//							int rsIdArticle = resultSet.getInt(1);
-//							String rsDescription = resultSet.getString(2);
-//							String rsBrand = resultSet.getString(3);
-//							double rsPrice = resultSet.getDouble(4);
-//							articles.add(new Article(rsIdArticle, rsDescription, rsBrand, rsPrice));
-//						}
+//					while(resultSet.next()) {
+//						int rsIdArticle = resultSet.getInt(1);
+//						String rsDescription = resultSet.getString(2);
+//						String rsBrand = resultSet.getString(3);
+//						double rsPrice = resultSet.getDouble(4);
+//						articles.add(new Article(rsIdArticle, rsDescription, rsBrand, rsPrice));
 //					}
 //				}
-//				for(Article a : articles) {
-//					System.out.println(a.getIdArticle() + " - " + a.getDescription() + " - " + a.getBrand() + " - " + a.getPrice());
-//				}
-//				
-//			} catch(SQLException e) {
-//				e.printStackTrace();
 //			}
-		
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		} catch (ClassNotFoundException e) {
+//			for(Article a : articles) {
+//				System.out.println(a.getIdArticle() + " - " + a.getDescription() + " - " + a.getBrand() + " - " + a.getPrice());
+//			}
+//				
+//		} catch(SQLException e) {
 //			e.printStackTrace();
 //		}
 	}

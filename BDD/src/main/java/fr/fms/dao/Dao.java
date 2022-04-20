@@ -10,6 +10,6 @@ public interface Dao<T> {
 	public void create(T obj);
 	public boolean update(T obj);
 	public boolean delete(int id);
-	public void read(int id); //attention, doit retourner l'objet
-	public ArrayList<Article> readAll();
+	public T read(int id); 
+	public ArrayList<T> readAll();
 }

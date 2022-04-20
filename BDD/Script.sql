@@ -28,9 +28,6 @@ SELECT * FROM t_articles ORDER BY unitaryprice ASC;
 SELECT description FROM t_articles;
 
 /**1.11**/
-SELECT * FROM t_articles ORDER BY unitaryprice ASC;
-
-/**1.12**/
 INSERT INTO T_Articles (Description, Brand, UnitaryPrice) VALUES ('Clé USB-C', 'CETME', 500);
 /**affiche les article de la marque CETME, où le prix unitaire est >= 99
 limit 0, 2 : 0 commence à l'indice 0 des requetes, 2 affiche les 2 premiers resultats
@@ -55,12 +52,21 @@ ALTER TABLE t_articles ADD FOREIGN KEY (IdCat) REFERENCES category(IdCat); /**AD
 
 UPDATE t_articles SET IdCat = 1 WHERE IdArticle > 6;
 
+/**1.13**/
 SELECT t.IdArticle, t.description, t.brand, t.unitaryprice, category.CatName from t_articles AS t 
 inner join category where t.idcat = category.idcat ORDER BY unitaryprice ASC;
 
-SELECT t.idArticle, t.description, t.brand, t.unitaryprice, category.CatName from t_articles AS t 
-inner join category where t.idcat = category.idcat AND t.idArticle = 11;
+/**6**/
+CREATE TABLE T_Users(
+	IdUser INT(4) PRIMARY KEY AUTO_INCREMENT,
+	Login VARCHAR(20) NOT NULL,
+	Password VARCHAR(20) NOT NULL
+);
+
+INSERT INTO t_users (login, password) VALUES ('sara', '123'); 
+INSERT INTO t_users (login, password) VALUES ('blabla', '123');
 
 /**select tables**/
 SELECT * FROM t_articles;
+SELECT * FROM t_users;
 SELECT * FROM category;

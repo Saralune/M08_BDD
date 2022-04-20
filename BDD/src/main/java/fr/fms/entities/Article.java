@@ -136,6 +136,12 @@ public class Article {
 	public void setIdCat(int idCat) {
 		this.idCat = idCat;
 	}
+
+	@Override
+	public String toString() {
+		return "\n[idArticle = " + idArticle + ", description = " + description + ", brand = " + brand + ", price = "
+				+ price + ", idCat = " + idCat + "]"; //Article 
+	}
 	
 	
 }
