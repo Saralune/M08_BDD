@@ -3,10 +3,6 @@
  */
 package fr.fms.entities;
 
-import java.util.ArrayList;
-
-import fr.fms.dao.UserDao;
-
 /**
  * @author Stagiaires10P
  *
@@ -38,24 +34,6 @@ public class User {
 
 	public User() {
 		
-	}
-	
-	/**
-	 * 
-	 * 
-	 * 
-	 */
-	public boolean userExists() {
-		ArrayList<User> list = new UserDao<User>().readAll();
-		
-		for (int i = 0; i < list.size(); i++) {		
-			
-			if(list.get(i).getLogin().equals(this.getLogin()) && list.get(i).getPassword().equals(this.getPassword())) {
-				return true;
-			} 
-		}
-		
-		return false;
 	}
 
 	/**
@@ -102,7 +80,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "\nUser [idUser = " + idUser + ", login = " + login + ", password = " + password + "]";
+		return "\nUser [idUser = " + idUser + ", login = " + login + "]"; //", password = " + password +
 	}
 	
 	

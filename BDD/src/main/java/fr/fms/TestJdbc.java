@@ -22,8 +22,8 @@ public class TestJdbc {
 			
 			User user = new User(log, pwd);
 			
-			if(user.userExists()) { 	//new UserDao<User>().isUser(user)
-				System.out.println(new ArticlesDao<Article>().readAll());
+			if(new UserDao().isUser(user)) { 	
+				System.out.println(new ArticlesDao().readAll());
 				loop = false;
 				scan.close();
 			} else {

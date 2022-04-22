@@ -7,6 +7,8 @@ public class Article {
 	private double price;
 	private int idCat;
 	
+	private int qty;
+	
 	/** Constructor
 	 * @param idArticle
 	 * @param description
@@ -136,11 +138,25 @@ public class Article {
 	public void setIdCat(int idCat) {
 		this.idCat = idCat;
 	}
+	
+	/**
+	 * @return the qty
+	 */
+	public int getQty() {
+		return qty;
+	}
+
+	/**
+	 * @param qty the qty to set
+	 */
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
 
 	@Override
 	public String toString() {
 		return "\n[idArticle = " + idArticle + ", description = " + description + ", brand = " + brand + ", price = "
-				+ price + ", idCat = " + idCat + "]"; //Article 
+				+ price +  "]"; //Article ", quantité = " + qty +
 	}
 	
 	

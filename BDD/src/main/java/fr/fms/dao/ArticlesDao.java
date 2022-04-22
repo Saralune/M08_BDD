@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import fr.fms.entities.Article;
 
-public class ArticlesDao<T> implements Dao<Article> {
+public class ArticlesDao implements Dao<Article> {
 
 	@Override
 	public void create(Article obj) {
@@ -87,7 +87,7 @@ public class ArticlesDao<T> implements Dao<Article> {
 			}
 		
 		} catch(SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		
 		return null;

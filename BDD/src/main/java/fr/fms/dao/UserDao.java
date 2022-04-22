@@ -15,7 +15,7 @@ import fr.fms.entities.User;
  * @author Stagiaires10P
  *
  */
-public class UserDao<T> implements Dao<User> {
+public class UserDao implements Dao<User> {
 
 	@Override
 	public void create(User obj) {
@@ -120,17 +120,16 @@ public class UserDao<T> implements Dao<User> {
 		return res;
 	}
 	
-	//--> Plutôt utilisée dans la couche métier ?
-//	public boolean isUser(User user) {
-//		ArrayList<User> list = readAll();
-//		
-//		for (int i = 0; i < list.size(); i++) {		
-//			
-//			if(list.get(i).getLogin().equals(user.getLogin()) && list.get(i).getPassword().equals(user.getPassword())) {
-//				return true;
-//			}
-//		}
-//		
-//		return false;
-//	}
+	public boolean isUser(User user) {
+		ArrayList<User> list = readAll();
+		
+		for (int i = 0; i < list.size(); i++) {		
+			
+			if(list.get(i).getLogin().equals(user.getLogin()) && list.get(i).getPassword().equals(user.getPassword())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
